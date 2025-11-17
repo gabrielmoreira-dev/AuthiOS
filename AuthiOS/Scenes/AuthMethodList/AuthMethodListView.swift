@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct HomeView: View {
-    private let viewModel: HomeViewModel
+struct AuthMethodListView: View {
+    @State private var viewModel: AuthMethodListViewModel
 
-    init(viewModel: HomeViewModel) {
+    init(viewModel: AuthMethodListViewModel) {
         self.viewModel = viewModel
     }
 
@@ -20,6 +20,6 @@ struct HomeView: View {
 
 #Preview {
     NavigationStack {
-        HomeCoordinator().view()
+        AuthMethodListFactory.build()
     }
 }

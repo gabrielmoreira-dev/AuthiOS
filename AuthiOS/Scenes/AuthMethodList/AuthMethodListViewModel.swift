@@ -1,4 +1,6 @@
-extension HomeViewModel {
+import Combine
+
+extension AuthMethodListViewModel {
     enum Item: String, CaseIterable, Identifiable {
         case password = "Login with Password"
 
@@ -6,10 +8,10 @@ extension HomeViewModel {
     }
 }
 
-final class HomeViewModel {
-    private let coordinator: HomeCoordinatorType
+final class AuthMethodListViewModel: ObservableObject {
+    private let coordinator: AuthMethodListCoordinatorType
 
-    init(coordinator: HomeCoordinatorType) {
+    init(coordinator: AuthMethodListCoordinatorType) {
         self.coordinator = coordinator
     }
 

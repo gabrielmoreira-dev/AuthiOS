@@ -9,18 +9,28 @@ import SwiftUI
 
 @main
 struct AuthiOSApp: App {
-    private var coordinator: AppCoordinator
+    private var coordinator: AppCoordinator<AppRoute>
 
     init() {
         self.coordinator = AppCoordinator()
-        self.coordinator.childCoordinator = HomeCoordinator()
     }
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                coordinator.view()
+            RootView(destination: getDestination) {
+                AuthMethodListFactory.build(appCordinator: coordinator)
             }
+            .environmentObject(coordinator)
+        }
+    }
+
+    @ViewBuilder
+    private func getDestination(_ route: AppRoute) -> some View {
+        switch route {
+        case .loginWithPassword:
+            AuthMethodListFactory.build()
+        case .home:
+            AuthMethodListFactory.build()
         }
     }
 }
