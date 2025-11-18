@@ -2,16 +2,21 @@ protocol HomeCoordinating {
     func exitFlow()
 }
 
-final class HomeCoordinator {
-    private weak var appCoordinator: (any AppCoordinating<AppRoute>)?
+final class HomeCoordinator: Coordinator {
+    var navigationController: NavigationController<AppRoute>
+    var delegate: (any CoordinatorDelegate)?
 
-    init(appCoordinator: (any AppCoordinating<AppRoute>)?) {
-        self.appCoordinator = appCoordinator
+    init(navigationController: NavigationController<AppRoute>) {
+        self.navigationController = navigationController
+    }
+
+    func finish() {
+        
     }
 }
 
 extension HomeCoordinator: HomeCoordinating {
     func exitFlow() {
-        appCoordinator?.popToRoot()
+        popToRoot()
     }
 }

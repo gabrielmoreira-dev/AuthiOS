@@ -1,0 +1,1 @@
+protocol Routable: Hashable, Identifiable { }

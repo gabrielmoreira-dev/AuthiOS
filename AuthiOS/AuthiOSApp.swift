@@ -12,25 +12,32 @@ struct AuthiOSApp: App {
     private var coordinator: AppCoordinator<AppRoute>
 
     init() {
-        self.coordinator = AppCoordinator()
+        coordinator = AppCoordinator()
+        let authMethodListCoordinator = AuthMethodListCoordinator(
+            navigationController: coordinator.navigationController
+        )
+        coordinator.childCoordinator = authMethodListCoordinator
     }
 
     var body: some Scene {
         WindowGroup {
             RootView(destination: getDestination) {
-                AuthMethodListFactory.build(appCordinator: coordinator)
+                AuthMethodListFactory.build(
+                    navigationController: coordinator.navigationController
+                )
             }
-            .environmentObject(coordinator)
+            .environmentObject(coordinator.navigationController)
         }
     }
 
+    @MainActor
     @ViewBuilder
     private func getDestination(_ route: AppRoute) -> some View {
         switch route {
         case .loginWithPassword:
-            AuthMethodListFactory.build()
+            HomeFactory.build(navigationController: coordinator.navigationController)
         case .home:
-            HomeFactory.build(appCoordinator: coordinator)
+            HomeFactory.build(navigationController: coordinator.navigationController)
         }
     }
 }

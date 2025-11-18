@@ -1,47 +1,14 @@
 import Combine
 import SwiftUI
 
-protocol AppCoordinating<Route>: AnyObject {
-    associatedtype Route
-
-    func push(_ route: Route)
-    func pop()
-    func popToRoot()
-    func present(_ route: Route)
-    func dismiss()
+protocol AppCoordinating<Route>: AnyObject, Coordinator where Route: Routable {
+    var childCoordinator: (any Coordinator)? { get set }
 }
 
-final class AppCoordinator<R>: ObservableObject where R: Route {
-    @Published var path = NavigationPath()
-    @Published var modal: R?
-}
+final class AppCoordinator<Route: Routable>: ObservableObject , AppCoordinating {
+    @Published var navigationController = NavigationController<Route>()
+    var childCoordinator: (any Coordinator)?
+    var delegate: (any CoordinatorDelegate)?
 
-extension AppCoordinator: Coordinator {
-    func start() {
-        path = NavigationPath()
-    }
-    
-    func stop() { }
-}
-
-extension AppCoordinator: AppCoordinating {
-    func push(_ route: R) {
-        path.append(route)
-    }
-    
-    func pop() {
-        path.removeLast()
-    }
-    
-    func popToRoot() {
-        path.removeLast(path.count)
-    }
-
-    func present(_ modal: R) {
-        self.modal = modal
-    }
-
-    func dismiss() {
-        modal = nil
-    }
+    func finish() { }
 }

@@ -7,7 +7,7 @@ extension HomeView.Constants {
 
 struct HomeView: View {
     fileprivate enum Constants {}
-    private let viewModel: HomeViewModel
+    @State private var viewModel: HomeViewModel
 
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -30,6 +30,6 @@ struct HomeView: View {
 
 #Preview {
     NavigationStack {
-        HomeFactory.build()
+        HomeFactory.build(navigationController: NavigationController<AppRoute>())
     }
 }

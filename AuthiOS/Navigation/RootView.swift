@@ -1,18 +1,15 @@
 import SwiftUI
 
-struct RootView<Content, V, R>: View where Content: View, V: View, R: Route {
-    @EnvironmentObject var coordinator: AppCoordinator<R>
-    let destination: (R) -> V
+struct RootView<Content, V, Route>: View where Content: View, V: View, Route: Routable {
+    @EnvironmentObject var navigationController: NavigationController<Route>
+    let destination: (Route) -> V
     let content: () -> Content
 
     var body: some View {
-        NavigationStack(path: $coordinator.path) {
+        NavigationStack(path: $navigationController.path) {
             content()
-                .sheet(item: $coordinator.modal, content: destination)
-                .navigationDestination(for: R.self, destination: destination)
-        }
-        .onAppear() {
-            coordinator.start()
+                .sheet(item: $navigationController.presentedRoute, content: destination)
+                .navigationDestination(for: Route.self, destination: destination)
         }
     }
 }

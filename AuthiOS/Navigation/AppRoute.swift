@@ -1,4 +1,4 @@
-enum AppRoute: String, Route {
+enum AppRoute: String, Routable {
     case home
     case loginWithPassword
 

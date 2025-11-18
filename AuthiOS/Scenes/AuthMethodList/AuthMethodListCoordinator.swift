@@ -4,16 +4,21 @@ protocol AuthMethodListCoordinating {
     func goToLoginWithPassword()
 }
 
-final class AuthMethodListCoordinator {
-    private weak var appCoordinator: (any AppCoordinating<AppRoute>)?
+final class AuthMethodListCoordinator: Coordinator {
+    var navigationController: NavigationController<AppRoute>
+    var delegate: (any CoordinatorDelegate)?
 
-    init(appCoordinator: (any AppCoordinating<AppRoute>)?) {
-        self.appCoordinator = appCoordinator
+    init(navigationController: NavigationController<AppRoute>) {
+        self.navigationController = navigationController
+    }
+
+    func finish() {
+
     }
 }
 
 extension AuthMethodListCoordinator: AuthMethodListCoordinating {
     func goToLoginWithPassword() {
-        appCoordinator?.push(.home)
+        push(.home)
     }
 }
