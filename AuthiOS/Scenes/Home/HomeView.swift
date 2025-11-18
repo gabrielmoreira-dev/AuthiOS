@@ -30,6 +30,8 @@ struct HomeView: View {
 
 #Preview {
     NavigationStack {
-        HomeFactory.build(navigationController: NavigationController<AppRoute>())
+        HomeCoordinator(
+            navigationController: NavigationController<AppRoute>()
+        ).view
     }
 }

@@ -10,5 +10,13 @@ final class AppCoordinator<Route: Routable>: ObservableObject , AppCoordinating 
     var childCoordinator: (any Coordinator)?
     var delegate: (any CoordinatorDelegate)?
 
+    var view: some View {
+        if let childCoordinator {
+            AnyView(childCoordinator.view)
+        } else {
+            EmptyView()
+        }
+    }
+
     func finish() { }
 }

@@ -22,9 +22,7 @@ struct AuthiOSApp: App {
     var body: some Scene {
         WindowGroup {
             RootView(destination: getDestination) {
-                AuthMethodListFactory.build(
-                    navigationController: coordinator.navigationController
-                )
+                coordinator.view
             }
             .environmentObject(coordinator.navigationController)
         }
@@ -35,9 +33,9 @@ struct AuthiOSApp: App {
     private func getDestination(_ route: AppRoute) -> some View {
         switch route {
         case .loginWithPassword:
-            HomeFactory.build(navigationController: coordinator.navigationController)
+            HomeCoordinator(navigationController: coordinator.navigationController).view
         case .home:
-            HomeFactory.build(navigationController: coordinator.navigationController)
+            HomeCoordinator(navigationController: coordinator.navigationController).view
         }
     }
 }

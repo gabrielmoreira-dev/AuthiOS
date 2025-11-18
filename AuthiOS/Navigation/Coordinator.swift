@@ -1,7 +1,11 @@
+import SwiftUI
+
 protocol Coordinator: AnyObject, CoordinatorDelegate {
     associatedtype Route: Routable
+    associatedtype Content: View
 
     var navigationController: NavigationController<Route> { get set }
+    @MainActor @ViewBuilder var view: Content { get }
     var delegate: CoordinatorDelegate? { get set }
 
     func finish()

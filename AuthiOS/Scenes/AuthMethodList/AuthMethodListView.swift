@@ -20,6 +20,8 @@ struct AuthMethodListView: View {
 
 #Preview {
     NavigationStack {
-        AuthMethodListFactory.build(navigationController: NavigationController<AppRoute>())
+        AuthMethodListCoordinator(
+            navigationController: NavigationController<AppRoute>()
+        ).view
     }
 }
