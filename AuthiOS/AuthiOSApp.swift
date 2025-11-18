@@ -30,7 +30,7 @@ struct AuthiOSApp: App {
         case .loginWithPassword:
             AuthMethodListFactory.build()
         case .home:
-            AuthMethodListFactory.build()
+            HomeFactory.build(appCoordinator: coordinator)
         }
     }
 }

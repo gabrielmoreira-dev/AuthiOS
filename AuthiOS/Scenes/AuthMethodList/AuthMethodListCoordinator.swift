@@ -1,17 +1,19 @@
 import SwiftUI
 
-protocol AuthMethodListCoordinatorType {
+protocol AuthMethodListCoordinating {
     func goToLoginWithPassword()
 }
 
-final class AuthMethodListCoordinator: AuthMethodListCoordinatorType {
+final class AuthMethodListCoordinator {
     private weak var appCoordinator: (any AppCoordinating<AppRoute>)?
 
     init(appCoordinator: (any AppCoordinating<AppRoute>)?) {
         self.appCoordinator = appCoordinator
     }
+}
 
+extension AuthMethodListCoordinator: AuthMethodListCoordinating {
     func goToLoginWithPassword() {
-        appCoordinator?.present(.loginWithPassword)
+        appCoordinator?.push(.home)
     }
 }

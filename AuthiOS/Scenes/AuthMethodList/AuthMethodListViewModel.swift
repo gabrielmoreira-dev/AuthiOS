@@ -9,13 +9,15 @@ extension AuthMethodListViewModel {
 }
 
 final class AuthMethodListViewModel: ObservableObject {
-    private let coordinator: AuthMethodListCoordinatorType
+    private let coordinator: AuthMethodListCoordinating
 
-    init(coordinator: AuthMethodListCoordinatorType) {
+    init(coordinator: AuthMethodListCoordinating) {
         self.coordinator = coordinator
     }
 
-    var items: [Item] { Item.allCases }
+    var items: [Item] {
+        Item.allCases
+    }
 
     func didSelectOption(_ item: Item) {
         switch item {
