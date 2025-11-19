@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RootView<Content, V, Route>: View where Content: View, V: View, Route: Routable {
-    @EnvironmentObject var navigationController: NavigationController<Route>
+    @StateObject var navigationController: NavigationController<Route>
     let destination: (Route) -> V
     let content: () -> Content
 
