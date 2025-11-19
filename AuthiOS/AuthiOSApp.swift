@@ -13,13 +13,17 @@ struct AuthiOSApp: App {
 
     init() {
         coordinator = AppCoordinator()
-        let authMethodListCoordinator = AuthMethodListCoordinator()
+        let authMethodListCoordinator = AuthMethodListCoordinator(
+            navigationController: coordinator.navigationController
+        )
         coordinator.childCoordinator = authMethodListCoordinator
     }
 
     var body: some Scene {
         WindowGroup {
-            coordinator.view
+            RootView(navigationController: coordinator.navigationController, destination: getDestination) {
+                coordinator.view
+            }
         }
     }
 
@@ -28,9 +32,9 @@ struct AuthiOSApp: App {
     private func getDestination(_ route: AppRoute) -> some View {
         switch route {
         case .loginWithPassword:
-            HomeCoordinator().view
+            HomeCoordinator(navigationController: coordinator.navigationController).view
         case .home:
-            HomeCoordinator().view
+            HomeCoordinator(navigationController: coordinator.navigationController).view
         }
     }
 }

@@ -11,28 +11,17 @@ enum AuthMethodListRoute: String, Routable {
 }
 
 final class AuthMethodListCoordinator: Coordinator {
-    var navigationController: NavigationController<AuthMethodListRoute>
+    var navigationController: NavigationController<AppRoute>
     var delegate: (any CoordinatorDelegate)?
 
     @MainActor
     @ViewBuilder
     var view: some View {
-        RootView(navigationController: self.navigationController, destination: getDestination) {
-            AuthMethodListView(viewModel: AuthMethodListViewModel(coordinator: self))
-        }
+        AuthMethodListView(viewModel: AuthMethodListViewModel(coordinator: self))
     }
 
-    init(navigationController: NavigationController<AuthMethodListRoute> = .init()) {
+    init(navigationController: NavigationController<AppRoute>) {
         self.navigationController = navigationController
-    }
-
-    @MainActor
-    @ViewBuilder
-    func getDestination(_ route: AuthMethodListRoute) -> some View {
-        switch route {
-        case .home:
-            HomeCoordinator(navigationController: .init()).view
-        }
     }
 
     func finish() {
