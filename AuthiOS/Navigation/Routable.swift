@@ -1,1 +1,3 @@
-protocol Routable: Hashable, Identifiable { }
+protocol Routable: Hashable, Identifiable {
+    var id: String { get }
+}

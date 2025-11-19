@@ -30,8 +30,6 @@ struct HomeView: View {
 
 #Preview {
     NavigationStack {
-        HomeCoordinator(
-            navigationController: NavigationController<AppRoute>()
-        ).view
+        HomeCoordinator(navigationController: .init()).view
     }
 }
