@@ -1,11 +1,12 @@
+import Combine
 import SwiftUI
 
 protocol HomeCoordinating {
     func exitFlow()
 }
 
-final class HomeCoordinator: Coordinator {
-    var navigationController: NavigationController<AppRoute>
+final class HomeCoordinator: FeatureCoordinatorType {
+    @Published var navigationController: NavigationController<AppRoute>
     var delegate: (any CoordinatorDelegate)?
 
     @MainActor
@@ -14,7 +15,7 @@ final class HomeCoordinator: Coordinator {
         HomeView(viewModel: HomeViewModel(coordinator: self))
     }
 
-    init(navigationController: NavigationController<AppRoute> = .init()) {
+    init(navigationController: NavigationController<AppRoute>) {
         self.navigationController = navigationController
     }
 

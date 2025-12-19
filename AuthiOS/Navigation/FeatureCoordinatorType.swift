@@ -1,17 +1,10 @@
-import SwiftUI
-
-protocol Coordinator: AnyObject, CoordinatorDelegate {
+protocol FeatureCoordinatorType: CoordinatorType {
     associatedtype Route: Routable
-    associatedtype Content: View
-
+    
     var navigationController: NavigationController<Route> { get set }
-    @MainActor @ViewBuilder var view: Content { get }
-    var delegate: CoordinatorDelegate? { get set }
-
-    func finish()
 }
 
-extension Coordinator {
+extension FeatureCoordinatorType {
     func push(_ route: Route) {
         navigationController.push(route)
     }

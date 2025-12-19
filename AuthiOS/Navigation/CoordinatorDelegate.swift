@@ -1,3 +1,1 @@
-protocol CoordinatorDelegate: AnyObject {
-    
-}
+protocol CoordinatorDelegate: AnyObject { }

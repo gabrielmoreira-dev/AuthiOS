@@ -1,13 +1,13 @@
 import Combine
 import SwiftUI
 
-protocol AppCoordinating<Route>: AnyObject, Coordinator where Route: Routable {
-    var childCoordinator: (any Coordinator)? { get set }
+protocol AppCoordinating: AnyObject, CoordinatorType {
+    var childCoordinator: (any CoordinatorType)? { get set }
 }
 
-final class AppCoordinator<Route: Routable>: ObservableObject , AppCoordinating {
+final class AppCoordinator<Route: Routable>: ObservableObject, AppCoordinating {
     @Published var navigationController = NavigationController<Route>()
-    var childCoordinator: (any Coordinator)?
+    var childCoordinator: (any CoordinatorType)?
     weak var delegate: (any CoordinatorDelegate)?
 
     var view: some View {

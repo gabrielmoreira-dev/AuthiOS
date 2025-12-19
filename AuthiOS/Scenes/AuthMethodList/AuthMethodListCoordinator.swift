@@ -1,3 +1,4 @@
+import Combine
 import SwiftUI
 
 protocol AuthMethodListCoordinating {
@@ -10,8 +11,8 @@ enum AuthMethodListRoute: String, Routable {
     var id: String { rawValue }
 }
 
-final class AuthMethodListCoordinator: Coordinator {
-    var navigationController: NavigationController<AppRoute>
+final class AuthMethodListCoordinator: FeatureCoordinatorType {
+    @Published var navigationController: NavigationController<AppRoute>
     var delegate: (any CoordinatorDelegate)?
 
     @MainActor
@@ -24,9 +25,7 @@ final class AuthMethodListCoordinator: Coordinator {
         self.navigationController = navigationController
     }
 
-    func finish() {
-
-    }
+    func finish() { }
 }
 
 extension AuthMethodListCoordinator: AuthMethodListCoordinating {
