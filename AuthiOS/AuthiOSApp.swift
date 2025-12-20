@@ -32,7 +32,7 @@ struct AuthiOSApp: App {
     private func getDestination(_ route: AppRoute) -> some View {
         switch route {
         case .loginWithPassword:
-            HomeCoordinator(navigationController: coordinator.navigationController).view
+            PasswordCoordinator(navigationController: coordinator.navigationController).view
         case .home:
             HomeCoordinator(navigationController: coordinator.navigationController).view
         }

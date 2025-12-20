@@ -7,7 +7,7 @@ protocol HomeCoordinating {
 
 final class HomeCoordinator: FeatureCoordinatorType {
     @Published var navigationController: NavigationController<AppRoute>
-    var delegate: (any CoordinatorDelegate)?
+    weak var delegate: (any CoordinatorDelegate)?
 
     @MainActor
     @ViewBuilder

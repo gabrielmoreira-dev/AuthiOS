@@ -1,18 +1,18 @@
 import Combine
 import SwiftUI
 
-protocol AuthMethodListCoordinating {
-    func goToLoginWithPassword()
+protocol PasswordCoordinatorType {
+    func goHome()
 }
 
-final class AuthMethodListCoordinator: FeatureCoordinatorType {
+final class PasswordCoordinator: FeatureCoordinatorType {
     @Published var navigationController: NavigationController<AppRoute>
     weak var delegate: (any CoordinatorDelegate)?
 
     @MainActor
     @ViewBuilder
     var view: some View {
-        AuthMethodListView(viewModel: AuthMethodListViewModel(coordinator: self))
+        PasswordView(viewModel: PasswordViewModel(coordinator: self))
     }
 
     init(navigationController: NavigationController<AppRoute>) {
@@ -22,8 +22,8 @@ final class AuthMethodListCoordinator: FeatureCoordinatorType {
     func finish() { }
 }
 
-extension AuthMethodListCoordinator: AuthMethodListCoordinating {
-    func goToLoginWithPassword() {
-        push(.loginWithPassword)
+extension PasswordCoordinator: PasswordCoordinatorType {
+    func goHome() {
+        push(.home)
     }
 }

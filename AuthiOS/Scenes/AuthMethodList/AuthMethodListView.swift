@@ -1,11 +1,7 @@
 import SwiftUI
 
 struct AuthMethodListView: View {
-    @State private var viewModel: AuthMethodListViewModel
-
-    init(viewModel: AuthMethodListViewModel) {
-        self.viewModel = viewModel
-    }
+    @StateObject var viewModel: AuthMethodListViewModel
 
     var body: some View {
         List(viewModel.items) { item in

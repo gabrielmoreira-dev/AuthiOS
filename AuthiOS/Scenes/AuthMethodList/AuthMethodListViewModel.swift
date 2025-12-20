@@ -8,6 +8,7 @@ extension AuthMethodListViewModel {
     }
 }
 
+@MainActor
 final class AuthMethodListViewModel: ObservableObject {
     private let coordinator: AuthMethodListCoordinating
 

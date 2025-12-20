@@ -7,11 +7,7 @@ extension HomeView.Constants {
 
 struct HomeView: View {
     fileprivate enum Constants {}
-    @State private var viewModel: HomeViewModel
-
-    init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
-    }
+    @StateObject var viewModel: HomeViewModel
 
     var body: some View {
         VStack {

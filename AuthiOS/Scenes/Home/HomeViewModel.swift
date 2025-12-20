@@ -6,6 +6,7 @@ extension HomeViewModel.Constants {
     static let buttonTitle = "Sign Out"
 }
 
+@MainActor
 final class HomeViewModel: ObservableObject {
     fileprivate enum Constants {}
     private let coordinator: HomeCoordinating
